@@ -1,16 +1,32 @@
 var database;
+var voter,form,question, survey;
+var voterCount;
 var votersEmail;
 var votersAnswers;
-var voterCount;
-var player,form;
+var surveyState=0;
+var bg;
+var Ans=[];
 
-function setup() {
-  createCanvas(displayWidth,displayHeight);
-  database=firebase.database();
-  form= new Form;
+function preload(){
+   bg= loadImage("bg.jpg");
 }
 
-function draw() {
-  form.display();
-  background(255)
+function setup() {
+  createCanvas(1300,1000);
+  database=firebase.database();
+
+  survey= new Survey();
+  survey.getState();
+  survey.start();
+
+  if(surveyState === 1){
+    // clear();
+    survey.play();
+  }
+  
+}
+
+function draw() {  
+  background(bg)
+  
 }
